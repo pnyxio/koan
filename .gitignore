@@ -1,0 +1,12 @@
+/.settings/
+/.project
+.idea/
+build/
+/node_modules/
+.gradle/
+.idea/
+gradle/
+gradlew
+gradlew.bat
+yarn.lock
+package-lock.json
