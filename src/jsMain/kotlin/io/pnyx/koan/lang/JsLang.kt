@@ -1,5 +1,6 @@
 package io.pnyx.koan.lang
 
+/*
 import io.pnyx.koan.obj.GArr
 import io.pnyx.koan.obj.JssArr
 import io.pnyx.koan.obj.Miao
@@ -32,4 +33,5 @@ inline fun <reified T> jsArr2(crossinline builder: Miao<T>.() -> Unit): Miao<T> 
 
     return nativeArray
 }
+*/
 

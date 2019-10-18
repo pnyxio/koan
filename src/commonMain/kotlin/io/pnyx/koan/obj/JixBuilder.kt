@@ -19,7 +19,7 @@ class JixBuilder: JixHandler {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun getArr(): Arr = get() as Arr
+    fun <T> getArr(): Arr<T> = get() as Arr<T>
 
     fun getObj(): Obj = get() as Obj
 
@@ -33,11 +33,11 @@ class JixBuilder: JixHandler {
         if(result == null) {
 			result = value.inner
 			cur = result
-		} else if(cur is TArr<*>) {
+		} else if(cur is Arr<*>) {
             @Suppress("UNCHECKED_CAST")
-            (cur as TArr<T>).push(value.inner)
+            (cur as Arr<T>).push2(value.inner)
 		} else {
-			(cur as Obj)[pendingKey!!.inner] = value.inner
+			(cur as Obj).store(pendingKey!!.inner, value.inner)
 		}
 
     }
@@ -53,9 +53,9 @@ class JixBuilder: JixHandler {
 			result = Obj()
 			cur = result;
 		} else {
-			if(cur is TArr<*>) {
+			if(cur is Arr<*>) {
                 @Suppress("UNCHECKED_CAST")
-                cur = (cur as TArr<Obj>).push(Obj())
+                cur = (cur as Arr<Obj>).push2(Obj())
 			} else {
 				cur = (cur as Obj).store(pendingKey!!.inner, Obj());
 			}
@@ -74,14 +74,14 @@ class JixBuilder: JixHandler {
     override fun startArr() {
         unconsumed()
         if(result == null) {
-			result = Arr();
+			result = Arr<Any?>();
 			cur = result
 		} else {
-			if(cur is TArr<*>) {
+			if(cur is Arr<*>) {
                 @Suppress("UNCHECKED_CAST")
-				cur = (cur as Arr).push(Arr())
+				cur = (cur as Arr<Any?>).push2(Arr.ofAny())
 			} else {
-				cur = (cur as Obj).store(pendingKey!!.inner, TArr())
+				cur = (cur as Obj).store(pendingKey!!.inner, Arr.ofAny())
 			}
 		}
 		parentHierarchy.push(cur);

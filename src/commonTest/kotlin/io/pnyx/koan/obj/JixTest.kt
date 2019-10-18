@@ -15,7 +15,7 @@ class JixTest {
             b.get() == null
         }
         try {
-            b.getArr()
+            b.getArr<Any?>()
         } catch (e: Exception) {
         }
 
@@ -27,7 +27,7 @@ class JixTest {
         b.startArr()
         b.prim(StringEv("hello"))
         b.endArr()
-        assertEquals(1, b.getArr().size)
+        assertEquals(1, b.getArr<Any?>().len)
 
         b = JixBuilder()
         b.startObj()
@@ -36,8 +36,8 @@ class JixTest {
         b.prim(StringEv("hello"))
         //b.onEndEntry()
         b.endObj()
-        assertEquals(1, b.getObj().size)
-        assertEquals("hello", b.getObj()["message"])
+        assertEquals(1, b.getObj().len)
+        assertEquals("hello", b.getObj().fetch("message"))
 
     }
 
@@ -57,13 +57,13 @@ class JixTest {
             |   }
             |}
         """.trimMargin())
-        assertNull(o["z"])
+        assertNull(o.fetch("z"))
         assertTrue(o.containsKey("z"))
-        assertTrue(o["b"] as Boolean)
-        assertEquals(123.3, o["n"])
-        assertEquals("", o["s"])
-        val a = o["a"].asArr
-        assertEquals(1, a[0])
-        assertEquals("y", (a[1] as Obj)["x"])
+        assertTrue(o.fetch("b") as Boolean)
+        assertEquals(123.3, o.fetch("n"))
+        assertEquals("", o.fetch("s"))
+        val a = o.fetch("a") as Arr<*>
+        assertEquals(1, a.pos(0))
+        assertEquals("y", (a.pos(1) as Obj).fetch("x"))
    }
 }

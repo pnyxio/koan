@@ -19,7 +19,7 @@ interface JixSrc {
             is Number -> NumberEv(value)
             is String -> StringEv(value)
             is Obj -> value
-            is TArr<*> -> value
+            is Arr<*> -> value
             else -> throw IllegalArgumentException()
         }
     }

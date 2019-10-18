@@ -4,10 +4,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
 
-expect interface MyArr<T> {
-
-}
-
+/*
 
 inline fun <reified T: Biz> A(): ArrProperty<T> = BizArrProperty<T>(T::class)
 fun <T: Any> AP(): ArrProperty<T> = PrimArrProperty()
@@ -120,3 +117,4 @@ open class ArrPropertyNonNull<T>(val wrapper: BizWrapFun<T>?) {
 class BizArrPropertyNonNull<T: Biz>(typeParameter: KClass<T>): ArrPropertyNonNull<T>(wrapperOf(typeParameter))
 
 class PrimArrPropertyNonNull<T: Any>() : ArrPropertyNonNull<T>(null)
+*/

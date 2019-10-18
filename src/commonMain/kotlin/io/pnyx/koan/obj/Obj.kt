@@ -1,8 +1,21 @@
 package io.pnyx.koan.obj
 
-import io.pnyx.koan.lang.ctor
 
+expect interface Obj : JixSrc, Iterable<Pair<String,Any?>> {
+    val len: Int
 
+    fun store(key: String, value: Any?): Any?
+    fun fetch(key: String): Any?
+    fun del(key: String): Any?
+    fun containsKey(key: String): Boolean
+
+    companion object {
+        operator fun invoke(vararg entries: Pair<String, Any?>): Obj// = ObjImpl(linkedMapOf(*entries))
+    }
+
+}
+
+/*
 //TODO should implement equals
 interface Obj: MutableMap<String, Any?>, JixSrc {
     var biz: Biz?//TODO remove
@@ -28,4 +41,5 @@ interface Obj: MutableMap<String, Any?>, JixSrc {
 internal class ObjImpl(private val m: LinkedHashMap<String, Any?>): MutableMap<String, Any?> by m, Obj {
     override var biz: Biz? = null
 }
+*/
 

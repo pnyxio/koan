@@ -8,14 +8,14 @@ pluginManagement {
   }
 
   repositories {
-    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
 
     mavenCentral()
 
-    maven { url 'https://plugins.gradle.org/m2/' }
+    maven(url = "https://plugins.gradle.org/m2/")
   }
 }
-rootProject.name = 'koan'
-
-
-enableFeaturePreview('GRADLE_METADATA')
+rootProject.name = "koan"
+//
+//
+//enableFeaturePreview('GRADLE_METADATA')

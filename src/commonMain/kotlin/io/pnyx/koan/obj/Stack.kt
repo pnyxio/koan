@@ -1,6 +1,6 @@
 package io.pnyx.koan.lang
 
-class Stack<T> {
+internal class Stack<T> {
     private val l: MutableList<T> = mutableListOf()
     fun isEmpty() = l.isEmpty()
     val size = l.size

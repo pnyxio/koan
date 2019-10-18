@@ -5,6 +5,7 @@ import io.pnyx.koan.lang.ctor
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
+/*
 typealias BizWrapFun<T> = (Obj) -> T
 fun <T: Biz> wrapperOf(klass: KClass<T>): BizWrapFun<T> = { o: Obj -> Biz.wrap(klass, o) }
 
@@ -103,3 +104,4 @@ operator fun getValue(thisRef: Biz, property: KProperty<*>): T {
     }
 }
 
+*/
