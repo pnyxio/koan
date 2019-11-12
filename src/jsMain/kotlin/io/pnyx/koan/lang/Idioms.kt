@@ -1,6 +1,5 @@
 package io.pnyx.koan.lang
 
-import kotlinext.js.Object
 
 fun <T> jsNew(jsCtor: dynamic, vararg args: Any?): T =
     js("args.unshift(null); new (Function.prototype.bind.apply(jsCtor, args));")
@@ -28,7 +27,6 @@ fun Any.copyDyn(vararg src : Any, builder: dynamic.() -> Unit) : dynamic {
 }
 
 
-val ObjectConstructor = Object.getPrototypeOf<dynamic, Any>(Object).constructor
 
 fun <T> jso(o : T): T = o.also {
     Object.getPrototypeOf<dynamic, T>(o).constructor = ObjectConstructor
@@ -37,8 +35,6 @@ fun <T> jso(o : T): T = o.also {
 fun <T> T.jso(): T = this.also {
     Object.getPrototypeOf<dynamic, T>(this).constructor = ObjectConstructor
 }
-
-
 //fun beget(o: Any) : dynamic {
 //    return Object.create(o).asDynamic()
 //}

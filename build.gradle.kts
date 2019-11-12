@@ -89,9 +89,9 @@ kotlin {
                 implementation(kotlin("stdlib-js"))
                 implementation("org.jetbrains.kotlinx:kotlinx-io-js:$kotlinx_io_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-io-js:$kotlinx_io_version")
-                implementation("org.jetbrains:kotlin-extensions:1.0.1-pre.85-kotlin-1.3.50") {
-                    exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-html-js")
-                }
+//                implementation("org.jetbrains:kotlin-extensions:1.0.1-pre.85-kotlin-1.3.50") {
+//                    exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-html-js")
+//                }
             }
         }
         val jsTest by getting {

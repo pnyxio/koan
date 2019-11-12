@@ -28,14 +28,14 @@ class JixBuilder: JixHandler {
     private var subscribed = false;
 
 
-    override fun <T> prim(value: PrimOrNull<T>) {
+    override fun <P> prim(value: PrimOrNull<P>) {
         unconsumed()
         if(result == null) {
 			result = value.inner
 			cur = result
 		} else if(cur is Arr<*>) {
             @Suppress("UNCHECKED_CAST")
-            (cur as Arr<T>).push2(value.inner)
+            (cur as AnyArr).append(value.inner)
 		} else {
 			(cur as Obj).store(pendingKey!!.inner, value.inner)
 		}
@@ -55,7 +55,7 @@ class JixBuilder: JixHandler {
 		} else {
 			if(cur is Arr<*>) {
                 @Suppress("UNCHECKED_CAST")
-                cur = (cur as Arr<Obj>).push2(Obj())
+                cur = (cur as Arr<Obj>).append(Obj())
 			} else {
 				cur = (cur as Obj).store(pendingKey!!.inner, Obj());
 			}
@@ -79,7 +79,7 @@ class JixBuilder: JixHandler {
 		} else {
 			if(cur is Arr<*>) {
                 @Suppress("UNCHECKED_CAST")
-				cur = (cur as Arr<Any?>).push2(Arr.ofAny())
+				cur = (cur as Arr<Any?>).append(Arr.ofAny())
 			} else {
 				cur = (cur as Obj).store(pendingKey!!.inner, Arr.ofAny())
 			}

@@ -46,3 +46,7 @@ object Refl {
         }
     }
 }
+
+
+val KClass<*>.isInterface get() = java.isInterface
+

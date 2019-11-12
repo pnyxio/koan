@@ -1,37 +1,52 @@
 package io.pnyx.koan.lang
 
-/*
-import io.pnyx.koan.obj.GArr
-import io.pnyx.koan.obj.JssArr
-import io.pnyx.koan.obj.Miao
 
-external interface JsArr<T> {
+external val Infinity: Number
+external val NaN: Number
+
+external interface PropertyDescriptor<T> {
+    var configurable: Boolean
+    var enumerable: Boolean
+    var value: T
+    var writable: Boolean
+    var get: () -> T
+    var set: (v: T) -> Unit
 }
 
-fun <T> JsArr<T>.first(): T {
-    return asDynamic()[0]
+external interface JsObject {
+    fun toLocaleString(): String
+    fun valueOf(): dynamic
+    fun hasOwnProperty(v: String): Boolean
+    fun isPrototypeOf(v: Any): Boolean
+    fun propertyIsEnumerable(v: String): Boolean
 }
 
-val <T> JsArr<T>.size get(): Int {
-    return asDynamic().length
+fun Any.asJsObject() = this as JsObject
+
+val ObjectConstructor = Object.getPrototypeOf<dynamic, Any>(Object).constructor
+
+external object Object {
+    fun <P, T : P> getPrototypeOf(o: T): P?
+    fun <T> getOwnPropertyDescriptor(o: Any, p: String): PropertyDescriptor<T>
+    fun getOwnPropertyNames(o: Any): Array<String>
+    fun create(o: Nothing?, properties: dynamic = definedExternally): Any
+    fun <T> create(o: T, properties: dynamic = definedExternally): T
+    fun <T, P> defineProperty(o: T, p: String, attributes: PropertyDescriptor<P>): T
+    fun <T> defineProperties(o: T, properties: dynamic): T
+    fun <T> seal(o: T): T
+    fun <R, T : R> freeze(o: T): R
+    fun <T> preventExtensions(o: T): T
+    fun isSealed(o: Any): Boolean
+    fun isFrozen(o: Any): Boolean
+    fun isExtensible(o: Any): Boolean
+    fun keys(o: Any): Array<String>
 }
 
-fun <T> JsArr<T>.push(t: T?) {
-    asDynamic().push(t)
+fun Any.getOwnPropertyNames(): Array<String> {
+    @Suppress("UNUSED_VARIABLE")
+    val me = this
+    return js("Object.getOwnPropertyNames(me)")
 }
 
-
-inline fun <reified T> jsArr(): JsArr<T> {
-    return js("[]")
-}
-
-inline fun <reified T> jsArr2(crossinline builder: Miao<T>.() -> Unit): Miao<T> {
-    val nativeArray: Miao<T> = js("[]")
-    nativeArray.apply {
-        builder()
-    }
-
-    return nativeArray
-}
-*/
-
+//@JsModule("core-js/features/object/assign")
+//external fun <T, R : T> objectAssign(dest: R, vararg src: T): R

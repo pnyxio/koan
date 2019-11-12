@@ -52,8 +52,7 @@ class JsonParser (private val range: BinRange, private val h: JixHandler) {
     private fun eof() {
         while (pos < len - 1) {
             when (cur) {
-                SPACE, NEWLINE, TAB, CARRIAGE_RET -> {
-                }
+                SPACE, NEWLINE, TAB, CARRIAGE_RET -> {}
                 else -> throw IllegalArgumentException("trailing garbage at position $pos")
             }
             incr()
@@ -99,7 +98,6 @@ class JsonParser (private val range: BinRange, private val h: JixHandler) {
         if (incr() != _r || incr() != _u || incr() != _e) {
             throw IllegalArgumentException("invalid literal at position $pos")
         }
-//        val v = ValImpl(range.range(pos - 3, 4), JsonType.bool, true)
         incr()
         h.prim(True)
     }
@@ -256,15 +254,12 @@ class JsonParser (private val range: BinRange, private val h: JixHandler) {
             throw IllegalArgumentException("not found expected colon at $pos")
         }
         incr()
-        //TODO entry !!!!!!!!!!!!!!!!!!!
         h.key(KeyEv(k))
     }
 
     companion object {
         private val EOF: Byte = 0
     }
-
-
 }
 
 

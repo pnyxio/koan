@@ -58,7 +58,7 @@ class JixTest {
             |}
         """.trimMargin())
         assertNull(o.fetch("z"))
-        assertTrue(o.containsKey("z"))
+        assertTrue(o.existsKey("z"))
         assertTrue(o.fetch("b") as Boolean)
         assertEquals(123.3, o.fetch("n"))
         assertEquals("", o.fetch("s"))

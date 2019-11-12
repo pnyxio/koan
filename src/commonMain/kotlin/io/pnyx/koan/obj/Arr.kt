@@ -2,11 +2,10 @@
 
 package io.pnyx.koan.obj
 
-//typealias Seq<T> = Arr<T>
 
 interface IArr<T> : JixSrc, Iterable<T> {
     val len: Int
-    fun push2(elm: T): T
+    fun append(elm: T): T
 
     override fun streamTo(handler: JixHandler) {
         handler.startArr()
@@ -32,7 +31,7 @@ expect interface Arr<T> : IArr<T> {
 
 }
 
-
+typealias AnyArr = Arr<Any?>
 
 
 

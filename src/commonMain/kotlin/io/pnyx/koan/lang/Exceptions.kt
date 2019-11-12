@@ -14,4 +14,8 @@ fun illegalStateAssert(message: String? = null, cause: Throwable? = null, test: 
     if(! test()) raise<IllegalStateException>(message, cause)
 }
 
+fun illegalArgAssert(message: String? = null, cause: Throwable? = null, test: () -> Boolean) {
+    if(! test()) raise<IllegalArgumentException>(message, cause)
+}
+
 fun <T> notNull(arg: T?, lazyMessage: (() -> String)? = null): T = arg ?: throw NullPointerException(lazyMessage?.invoke())
